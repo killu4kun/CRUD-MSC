@@ -1,18 +1,15 @@
-const Products = require("../models/productsModels");
+const Products = require('../models/productsModels');
 
-const isValid = (name, quantity) => {
+const nameLongMessage = '"name" length must be at least 5 characters long';
+
+const isValid = async (name, quantity) => {
   if (!name) return { code: 400, message: '"name" is required' };
-  if (name.length < 5) {
-    return {
-      code: 422,
-      message: '"name" length must be at least 5 characters long',
-    };
-  }
-  if (quantity === undefined) {
-    return { code: 400, message: '"quantity" is required' };
-  }
+  if (name.length < 5) return { code: 422, message: nameLongMessage };
+  const resultFind = await Products.FindProductByName(name);
 
-  if (typeof quantity !== "number" || quantity <= 0) {
+  if (resultFind.length !== 0) { return { code: 409, message: 'Product already exists' }; }
+  if (quantity === undefined) { return { code: 400, message: '"quantity" is required' }; }
+  if (typeof quantity !== 'number' || quantity <= 0) {
     return {
       code: 422,
       message: '"quantity" must be a positive number',
@@ -22,7 +19,7 @@ const isValid = (name, quantity) => {
 };
 
 const create = async (name, quantity) => {
-  const productIsValid = isValid(name, quantity);
+  const productIsValid = await isValid(name, quantity);
 
   if (productIsValid.message) return productIsValid;
 

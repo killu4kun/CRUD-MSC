@@ -7,14 +7,22 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  const [rows] = await connection.execute(
-    'SELECT * FROM StoreManager.products WHERE id=?', 
-    [id],
-  );
+  const query = 'SELECT * FROM StoreManager.products WHERE id=?';
+  const [rows] = await connection.execute(query, [id]);
   return rows[0];
+};
+
+const deleteById = async (id) => {
+  const query = 'DELETE FROM StoreManager.products WHERE id=?';
+  try {
+    await connection.execute(query, [id]);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = {
   getAll,
   getById,
+  deleteById,
 };

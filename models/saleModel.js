@@ -23,8 +23,31 @@ const getAll = async () => {
   return sales;
 };
 
+const getById = async (id) => {
+  const query = `SELECT sales.date, salesproducts.product_id,salesproducts.quantity 
+    FROM StoreManager.sales_products AS salesproducts JOIN
+    StoreManager.sales AS sales
+    ON salesproducts.sale_id = sales.id
+    WHERE salesproducts.sale_id = ?`;
+  const [rows] = await connection.execute(query, [id]);
+  return rows;
+};
+
+const update = async (saleInfo) => {
+  const query = `UPDATE StoreManager.sales_products
+  SET quantity = ? 
+  WHERE sale_id = ? AND product_id = ?`;
+  await connection.execute(query, [
+    saleInfo.quantity,
+    saleInfo.id,
+    saleInfo.product_id,
+  ]);
+};
+
 module.exports = {
   createNewSale,
   addSaleItem,
   getAll,
+  update,
+  getById,
 };

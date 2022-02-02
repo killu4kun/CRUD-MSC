@@ -9,34 +9,23 @@ const create = async (newProduct) => {
 
   return createdProduct;
 };
-
-const validQuantity = (quantity) => {
-  if (typeof quantity !== 'number' || quantity <= 0) return true;
-  return false;
-};
-
-const isValid = (name, quantity) => {
-  switch (true) {
-    case name === undefined:
-      return { code: 400, message: '"name" is required' };
-    case name.length < 5:
-      return {
-        code: 422,
-        message: '"name" length must be at least 5 characters long',
-      };
-    case quantity === undefined:
-      return { code: 400, message: '"quantity" is required' };
-    case validQuantity(quantity):
-      return {
-        code: 422,
-        message: '"quantity" must be a number larger than or equal 1',
-      };
-    default:
-      return {};
-  }
-};
-
+const getById = async (id) => {
+    const foundProduct = await Products.getById(id);
+    return foundProduct;
+  };
+  
+  const getAll = async () => {
+    const products = await Products.getAll();
+    return products;
+  };
+  
+  const update = async ({ id, name, quantity }) => {
+    const updatedProduct = await Products.update({ id, name, quantity });
+    return updatedProduct;
+  };
 module.exports = {
   create,
-  isValid,
+  update,
+  getAll,
+  getById,
 };

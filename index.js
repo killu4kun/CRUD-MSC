@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const productsController = require('./controllers/productsController');
 const salesController = require('./controllers/salesController');
+// comitao do teste
 
 const ensureProductName = require('./middlewares/ensureProductName');
 const ensureProductId = require('./middlewares/ensureProductId');

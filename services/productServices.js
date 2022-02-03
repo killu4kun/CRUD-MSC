@@ -24,6 +24,11 @@ const productGetById = async (id) => {
     return updatedProduct;
   };
 
+  const productDeleteById = async (id) => {
+    const deleted = await Products.deleteById(id);
+    return deleted;
+  };
+
   const productExists = async (id) => {
     const foundProduct = await Products.getById(id);
     return !!foundProduct; // foundProduct ? true : false
@@ -34,5 +39,6 @@ module.exports = {
   productUpDate,
   productGetAll,
   productGetById,
+  productDeleteById,
   productExists,
 };

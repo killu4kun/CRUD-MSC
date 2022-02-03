@@ -36,7 +36,7 @@ app.put(
   productsController.update,
 );
 
-app.delete('products/:id', ensureProductId, productsController.deleteById);
+app.delete('/products/:id', ensureProductId, productsController.deleteById);
 
 app.get('/sales', salesController.getSalesAll);
 

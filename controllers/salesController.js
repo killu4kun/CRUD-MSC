@@ -14,7 +14,7 @@ const addSalesController = async (req, res) => {
 };
 
 const getSalesAll = async (req, res) => {
-    const sales = await saleService.getAll();
+    const sales = await saleService.saleGetAll();
     return res.status(200).json(sales);
   };
 

@@ -5,7 +5,7 @@ const serialize = (sale) => ({
   quantity: sale.quantity,
 });
 
-const addSales = async (sales) => {
+const saleAdd = async (sales) => {
   const newSaleId = await saleModel.createNewSale();
   const serializedSales = sales.map(serialize);
 
@@ -16,24 +16,24 @@ const addSales = async (sales) => {
   return newSaleId;
 };
 
-const getAll = async () => {
+const saleGetAll = async () => {
   const sales = await saleModel.getAll();
   return sales;
 };
 
-const getById = async (id) => {
+const saleGetById = async (id) => {
   const sale = await saleModel.getById(id);
   return sale;
 };
 
-const update = async (saleInfo) => {
+const saleUpdate = async (saleInfo) => {
   const updatedSale = await saleModel.update(saleInfo);
   return updatedSale;
 };
 
 module.exports = {
-  addSales,
-  getAll,
-  getById,
-  update,
+  saleAdd,
+  saleGetAll,
+  saleGetById,
+  saleUpdate,
 };

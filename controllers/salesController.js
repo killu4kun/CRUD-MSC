@@ -13,6 +13,12 @@ const addSalesController = async (req, res) => {
     res.status(201).json({ id: newSaleID, itemsSold: sales });
 };
 
+const getSalesAll = async (req, res) => {
+    const sales = await saleService.getAll();
+    return res.status(200).json(sales);
+  };
+
 module.exports = {
     addSalesController,
+    getSalesAll,
 };

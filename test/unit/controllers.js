@@ -26,7 +26,7 @@ describe('Testa camada Controller - Products', () => {
     });
 
     it('é chamado o status com código 201', async () => {
-      await productController.productCreate(request, response);
+      await productController.create(request, response);
 
       expect(response.status.calledWith(201)).to.be.equal(true);
     });
@@ -48,7 +48,7 @@ describe('Testa camada Controller - Products', () => {
     });
 
     it('é chamado o status com código 200', async () => {
-      await productController.productGetAll(request, response);
+      await productController.getAll(request, response);
 
       expect(response.status.calledWith(200)).to.be.equal(true);
     });
@@ -70,11 +70,11 @@ describe('Testa camada Controller - Products', () => {
     });
 
     after(() => {
-      productService.getById.restore();
+      productService.productGetById.restore();
     });
 
     it('é chamado o status com código 200', async () => {
-      await productController.productGetById(request, response);
+      await productController.getById(request, response);
 
       expect(response.status.calledWith(200)).to.be.equal(true);
     });
@@ -105,7 +105,7 @@ describe('Testa camada Controller - Products', () => {
     });
 
     it('é chamado o status com código 200', async () => {
-      await productController.productUpDate(request, response);
+      await productController.update(request, response);
 
       expect(response.status.calledWith(200)).to.be.equal(true);
     });

@@ -38,13 +38,13 @@ app.put(
 
 app.delete('products/:id', ensureProductId, productsController.deleteById);
 
-app.get('/sales', salesController.getAllSales);
+app.get('/sales', salesController.getSalesAll);
 
 app.get('/sales/:id', salesController.getSalesById);
 
 app.use(ensureSaleProdId, ensureSaleQuantity);
 
-app.post('/sales', salesController.createSale);
+app.post('/sales', salesController.addSalesController);
 
 app.put('/sales/:id', salesController.updateSales);
 

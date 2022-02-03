@@ -4,7 +4,7 @@ const create = async (req, res) => {
   const { name, quantity } = req.body;
 
   try {
-    const newProduct = await productService.ProductCreate({
+    const newProduct = await productService.productCreate({
       name,
       quantity: Number(quantity),
     });
@@ -20,14 +20,14 @@ const create = async (req, res) => {
 const getById = async (req, res) => {
   const { id } = req;
 
-  const foundProduct = await productService.ProductGetById(id);
+  const foundProduct = await productService.productGetById(id);
   if (!foundProduct) { return res.status(404).json({ message: 'Product not found' }); }
 
   res.status(200).json(foundProduct);
 };
 
 const getAll = async (req, res) => {
-  const products = await productService.ProductGetAll();
+  const products = await productService.productGetAll();
   return res.status(200).json(products);
 };
 
@@ -35,7 +35,7 @@ const update = async (req, res) => {
   const { id } = req.params;
   const { name, quantity } = req.body;
 
-  const foundProduct = await productService.ProductGetById(id);
+  const foundProduct = await productService.productGetById(id);
   if (!foundProduct) return res.status(404).json({ message: 'Product not found' });
 
   const updatedProduct = await productService.update(
@@ -47,7 +47,7 @@ const update = async (req, res) => {
 const deleteById = async (req, res) => {
   const { id } = req.params;
 
-  const foundProduct = await productService.ProductGetById(id);
+  const foundProduct = await productService.productGetById(id);
   if (!foundProduct) return res.status(404).json({ message: 'Product not found' });
 
   await productService.deleteById(id);

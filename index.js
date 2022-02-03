@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const productsController = require('./controllers/productsController');
+const salesController = require('./controllers/salesController');
 
 const app = express();
 app.use(express.json());

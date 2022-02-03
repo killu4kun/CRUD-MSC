@@ -23,9 +23,16 @@ const productGetById = async (id) => {
     const updatedProduct = await Products.update({ id, name, quantity });
     return updatedProduct;
   };
+
+  const productExists = async (id) => {
+    const foundProduct = await Products.getById(id);
+    return !!foundProduct; // foundProduct ? true : false
+  };
+  
 module.exports = {
   productCreate,
   productUpDate,
   productGetAll,
   productGetById,
+  productExists,
 };

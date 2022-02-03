@@ -10,7 +10,7 @@ const saleAdd = async (sales) => {
   const serializedSales = sales.map(serialize);
 
   const promisesArray = serializedSales
-    .map((sale) => saleModel.addSaleProducts({ saleId: newSaleId, ...sale }));
+    .map((sale) => saleModel.addSaleItem({ saleId: newSaleId, ...sale }));
     // aguarda todas as sales serem adicionadas
   await Promise.all(promisesArray); 
   return newSaleId;

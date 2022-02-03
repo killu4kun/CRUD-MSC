@@ -21,32 +21,32 @@ app.post(
   '/products',
   ensureProductQuantity,
   ensureProductName,
-  productsController.createProduct,
+  productsController.create,
 );
 
-app.get('/products', productsController.getAllProducts);
+app.get('/products', productsController.getAll);
 
-app.get('/products/:id', ensureProductId, productsController.getProductById);
+app.get('/products/:id', ensureProductId, productsController.getById);
 
 app.put(
   '/products/:id',
   ensureProductId,
   ensureProductQuantity,
   ensureProductName,
-  productsController.updateProduct,
+  productsController.update,
 );
 
-app.delete('products/:id', ensureProductId, productsController.deleteProduct);
+app.delete('products/:id', ensureProductId, productsController.deleteById);
 
 app.get('/sales', salesController.getAllSales);
 
-app.get('/sales/:id', salesController.getSaleById);
+app.get('/sales/:id', salesController.getSalesById);
 
 app.use(ensureSaleProdId, ensureSaleQuantity);
 
 app.post('/sales', salesController.createSale);
 
-app.put('/sales/:id', salesController.updateSale);
+app.put('/sales/:id', salesController.updateSales);
 
 app.listen(process.env.PORT, () => {
   console.log(`Escutando na porta ${process.env.PORT}`);
